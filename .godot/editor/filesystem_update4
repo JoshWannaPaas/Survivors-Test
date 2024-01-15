@@ -4,3 +4,8 @@ res://gun.tscn
 res://characters/happy_boo/happy_boo.tscn
 res://mob.gd
 res://gun.gd
+res://sword.tscn
+res://sword.gd
+res://survivors_like.tscn
+res://bullet.tscn
+res://player.gd

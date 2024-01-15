@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_q7wpq"]
 [ext_resource type="Script" path="res://player.gd" id="1_ulk73"]
-[ext_resource type="PackedScene" uid="uid://b2i8iuf4upjp3" path="res://gun.tscn" id="3_doikr"]
+[ext_resource type="PackedScene" uid="uid://m3jlogembag4" path="res://sword.tscn" id="3_311iw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nf5p4"]
 radius = 25.02
@@ -25,6 +25,13 @@ motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("1_ulk73")
 
+[node name="Weapon" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="Sword" parent="Weapon" instance=ExtResource("3_311iw")]
+position = Vector2(0, -10)
+
 [node name="HappyBoo" parent="." instance=ExtResource("1_q7wpq")]
 unique_name_in_owner = true
 
@@ -33,9 +40,6 @@ position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_nf5p4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Gun" parent="." instance=ExtResource("3_doikr")]
-position = Vector2(0, -53)
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
