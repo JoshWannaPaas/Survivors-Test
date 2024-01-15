@@ -5,6 +5,11 @@ func _physics_process(delta: float) -> void:
 	if enemies_in_range.size() > 0:
 		var target_enemy = enemies_in_range.front()
 		look_at(target_enemy.global_position)
+		#rotate_toward(global_rotation, get_angle_to(target_enemy.global_position), 1)
+		#print(global_rotation)
+		#print(get_angle_to(target_enemy.global_position))
+		#print(delta)
+		#rotate(get_angle_to(target_enemy.global_position))
 
 func shoot():
 	const BULLET = preload("res://bullet.tscn")
@@ -12,7 +17,6 @@ func shoot():
 	new_bullet.global_position = %ShootingPoint.global_position
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
 	%ShootingPoint.add_child(new_bullet)
-
 
 func _on_timer_timeout() -> void:
 	shoot()

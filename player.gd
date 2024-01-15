@@ -5,6 +5,10 @@ signal health_depleted
 @export var speed: int = 300
 @export var health: float = 100.0
 @export var damage_rate: float = 10.0
+@export var killCount = 0
+
+func _process(delta: float) -> void:
+	%KillCount.set("text", "Kills: " + str(killCount))
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
