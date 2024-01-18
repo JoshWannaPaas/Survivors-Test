@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cp6husw3f38ok"]
+[gd_scene load_steps=7 format=3 uid="uid://cp6husw3f38ok"]
 
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_q7wpq"]
 [ext_resource type="Script" path="res://player.gd" id="1_ulk73"]
-[ext_resource type="PackedScene" uid="uid://m3jlogembag4" path="res://sword.tscn" id="3_311iw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nf5p4"]
 radius = 25.02
@@ -24,13 +23,6 @@ corner_radius_bottom_left = 10
 motion_mode = 1
 platform_floor_layers = 4294901760
 script = ExtResource("1_ulk73")
-
-[node name="Weapon" type="Node2D" parent="."]
-unique_name_in_owner = true
-visible = false
-
-[node name="Sword" parent="Weapon" instance=ExtResource("3_311iw")]
-position = Vector2(0, -10)
 
 [node name="HappyBoo" parent="." instance=ExtResource("1_q7wpq")]
 unique_name_in_owner = true
@@ -70,3 +62,13 @@ offset_top = -161.0
 offset_right = 64.0
 offset_bottom = -138.0
 text = "Kills: 0"
+
+[node name="WeaponAnchor" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -46)
+
+[node name="WeaponCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.25
+
+[connection signal="timeout" from="WeaponCooldown" to="." method="_on_weapon_cooldown_timeout"]

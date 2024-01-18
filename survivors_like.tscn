@@ -25,9 +25,6 @@ color = Color(0.219608, 0.443137, 0.266667, 1)
 [node name="Player" parent="." instance=ExtResource("1_ewt0r")]
 position = Vector2(937, 587)
 speed = 500
-health = 100.0
-damage_rate = 10.0
-killCount = 0
 
 [node name="Path2D" type="Path2D" parent="Player"]
 position = Vector2(-937, -587)
