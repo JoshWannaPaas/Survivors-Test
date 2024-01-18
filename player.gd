@@ -6,6 +6,8 @@ signal health_depleted
 @export var health: float = 100.0
 @export var damage_rate: float = 10.0
 @export var killCount = 0
+var canAttack = true
+
 
 func _process(delta: float) -> void:
 	%KillCount.set("text", "Kills: " + str(killCount))
@@ -15,8 +17,20 @@ func _physics_process(delta: float) -> void:
 	velocity = direction * speed
 	move_and_slide()
 	
+	if Input.is_action_pressed("attack"):
+		if canAttack: 
+			canAttack = false
+			%WeaponCooldown.start()
+			const WEAPON = preload("res://sword.tscn")
+			var new_weapon = WEAPON.instantiate()
+			%WeaponAnchor.add_child(new_weapon)
+			new_weapon.global_position = %WeaponAnchor.global_position
+			new_weapon.look_at(new_weapon.get_global_mouse_position())
+			new_weapon.set_rotation_degrees(new_weapon.get_rotation_degrees() + 90)
+		
+
+	
 	if velocity.length() > 0:
-		#get_node("HappyBoo").play_walk_animation()
 		%HappyBoo.play_walk_animation()
 	else:
 		%HappyBoo.play_idle_animation()
@@ -28,4 +42,8 @@ func _physics_process(delta: float) -> void:
 		if health <= 0.0:
 			health_depleted.emit()
 		
-	
+
+func _on_weapon_cooldown_timeout() -> void:
+	if canAttack == false: 
+		canAttack = true
+		print("Can Attack!")
