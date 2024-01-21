@@ -7,6 +7,7 @@ signal health_depleted
 @export var damage_rate: float = 10.0
 @export var killCount = 0
 var canAttack = true
+var test = 0
 
 
 func _process(delta: float) -> void:
@@ -19,14 +20,16 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("attack"):
 		if canAttack: 
-			canAttack = false
 			%WeaponCooldown.start()
+			print("Before attack: ", test)
 			const WEAPON = preload("res://sword.tscn")
 			var new_weapon = WEAPON.instantiate()
 			%WeaponAnchor.add_child(new_weapon)
+			print("After attack: ", test)
 			new_weapon.global_position = %WeaponAnchor.global_position
 			new_weapon.look_at(new_weapon.get_global_mouse_position())
 			new_weapon.set_rotation_degrees(new_weapon.get_rotation_degrees() + 90)
+			canAttack = false
 		
 
 	
@@ -46,4 +49,3 @@ func _physics_process(delta: float) -> void:
 func _on_weapon_cooldown_timeout() -> void:
 	if canAttack == false: 
 		canAttack = true
-		print("Can Attack!")

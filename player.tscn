@@ -69,6 +69,5 @@ position = Vector2(0, -46)
 
 [node name="WeaponCooldown" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.25
 
 [connection signal="timeout" from="WeaponCooldown" to="." method="_on_weapon_cooldown_timeout"]

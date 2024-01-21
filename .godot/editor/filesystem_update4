@@ -1,7 +1,8 @@
+res://sword.tscn
+res://sword.gd
 res://player.tscn
-res://player.gd
 res://mob.tscn
 res://survivors_like.tscn
-res://sword.tscn
 res://gun.tscn
-res://sword.gd
+res://player.gd
+res://characters/happy_boo/happy_boo.tscn
